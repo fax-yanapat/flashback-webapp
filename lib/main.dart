@@ -25,10 +25,10 @@ class _MyAppState extends State<MyApp> {
                   width: 250,
                   height: 250,
                   child: FlipCard(
-                      front: FlashcardView(
+                      front: FlashcardView(key: ObjectKey(1),
                         text: "What is your favorite agent",
                       ),
-                      back: FlashcardView(
+                      back: FlashcardView(key: ObjectKey(2),
                         text: "Sova",
                       ))),
               Row(
