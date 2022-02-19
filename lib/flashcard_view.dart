@@ -9,7 +9,10 @@ class FlashcardView extends StatelessWidget {
     return Card(
       elevation: 4,
       child: Center(
-        child: Text(text),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }

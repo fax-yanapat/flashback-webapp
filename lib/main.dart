@@ -2,6 +2,8 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/flashcard_view.dart';
 
+import 'flashcard.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,6 +15,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<Flashcard> flashcards = [
+    Flashcard(question: "Who you are ?", answer: "Owen"),
+    Flashcard(question: "where are you ?", answer: "Home"),
+    Flashcard(question: "why you here?", answer: "Dont know"),
+  ];
+
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,20 +35,22 @@ class _MyAppState extends State<MyApp> {
                   height: 250,
                   child: FlipCard(
                       front: FlashcardView(
-                        text: "What is your favorite agent",
+                        key: ObjectKey(1),
+                        text: flashcards[currentIndex].question,
                       ),
                       back: FlashcardView(
-                        text: "Sova",
+                        key: ObjectKey(2),
+                        text: flashcards[currentIndex].answer,
                       ))),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: showPreviouscard,
                       icon: Icon(Icons.chevron_left),
                       label: Text('Prev')),
                   OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: showNextcard,
                       icon: Icon(Icons.chevron_right),
                       label: Text('Next')),
                 ],
@@ -49,5 +60,19 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  void showNextcard() {
+    setState(() {
+      currentIndex =
+          (currentIndex + 1 < flashcards.length) ? currentIndex + 1 : 0;
+    });
+  }
+
+  void showPreviouscard() {
+    setState(() {
+      currentIndex =
+          (currentIndex - 1 >= 0) ? currentIndex - 1 : flashcards.length - 1;
+    });
   }
 }
