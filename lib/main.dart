@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp> {
                   width: 250,
                   height: 250,
                   child: FlipCard(
+<<<<<<< HEAD
                       front: FlashcardView(
                         key: ObjectKey(1),
                         text: flashcards[currentIndex].question,
@@ -41,6 +42,13 @@ class _MyAppState extends State<MyApp> {
                       back: FlashcardView(
                         key: ObjectKey(2),
                         text: flashcards[currentIndex].answer,
+=======
+                      front: FlashcardView(key: ObjectKey(1),
+                        text: "What is your favorite agent",
+                      ),
+                      back: FlashcardView(key: ObjectKey(2),
+                        text: "Sova",
+>>>>>>> 3fe0588298f85992685ea4ff978faebb231f637f
                       ))),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
