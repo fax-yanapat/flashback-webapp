@@ -1,13 +1,29 @@
-import 'package:flip_card/flip_card.dart';
+//import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/flashcard_view.dart';
+import 'package:flutter_application_1/screen/home.dart';
+//import 'package:flutter_application_1/flashcard_view.dart';
 
-import 'flashcard.dart';
+//import 'flashcard.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
+class MyApp extends StatelessWidget {
+  @override
+  MyApp({Key? key}) : super(key: key);
+  Widget build(BuildContext context){
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home:HomeScreen()
+    );
+  }
+}
+
+/*
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
@@ -34,7 +50,6 @@ class _MyAppState extends State<MyApp> {
                   width: 250,
                   height: 250,
                   child: FlipCard(
-<<<<<<< HEAD
                       front: FlashcardView(
                         key: ObjectKey(1),
                         text: flashcards[currentIndex].question,
@@ -42,13 +57,6 @@ class _MyAppState extends State<MyApp> {
                       back: FlashcardView(
                         key: ObjectKey(2),
                         text: flashcards[currentIndex].answer,
-=======
-                      front: FlashcardView(key: ObjectKey(1),
-                        text: "What is your favorite agent",
-                      ),
-                      back: FlashcardView(key: ObjectKey(2),
-                        text: "Sova",
->>>>>>> 3fe0588298f85992685ea4ff978faebb231f637f
                       ))),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -84,3 +92,4 @@ class _MyAppState extends State<MyApp> {
     });
   }
 }
+*/
