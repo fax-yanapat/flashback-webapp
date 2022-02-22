@@ -12,6 +12,7 @@ class FlashcardView extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 18),
         ),
       ),
     );
