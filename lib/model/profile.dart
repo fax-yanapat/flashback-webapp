@@ -2,5 +2,5 @@ class Profile {
   String username;
   String password;
 
-  Profile({this.username, this.password});
+  Profile({required this.username, required this.password});
 }
