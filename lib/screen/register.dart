@@ -10,7 +10,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
-  Profile profile = Profile();
+  Profile profile = Profile(password: '', username: '');
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Text("ชื่อผู้ใช้", style: TextStyle(fontSize: 20)),
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
-                    onSaved: (String username) {
-                      profile.username = username;
+                    onSaved: (String? username) {
+                      profile.username = username.toString();
                     },
                   ),
                   SizedBox(
@@ -40,16 +40,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Text("รหัสผ่าน", style: TextStyle(fontSize: 20)),
                   TextFormField(
                     obscureText: true,
-                    onSaved: (String password) {
-                      profile.password = password;
+                    onSaved: (String? password) {
+                      profile.password = password.toString();
                     },
                   ),
                   SizedBox(
                     child: ElevatedButton(
                       child: Text("ลงทะเบียน", style: TextStyle(fontSize: 18)),
                       onPressed: () {
-                        formKey.currentState.save();
-                        print("username = ${profile.username} password = ${profile.password}")
+                        formKey.currentState?.save();
+                        print(
+                            "username = ${profile.username} password = ${profile.password}");
                       },
                     ),
                   )
