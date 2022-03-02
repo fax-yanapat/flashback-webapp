@@ -5,6 +5,8 @@ import 'package:flutter_application_1/model/profile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
+import 'home.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
@@ -81,19 +83,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     await FirebaseAuth.instance
                                         .createUserWithEmailAndPassword(
                                             email: profile.email,
-                                            password: profile.password);
-                                    Fluttertoast.showToast(
-                                      msg: "สร้างบัญชีผู้ใช้เสร็จสิ้น",
-                                      gravity: ToastGravity.CENTER
-                                    );
-                                    formKey.currentState!.reset();
-                                    Navigator.pushReplacement(context, MaterialPageRoute())
+                                            password: profile.password)
+                                        .then((value) {
+                                      formKey.currentState!.reset();
+                                      Fluttertoast.showToast(
+                                          msg: "สร้างบัญชีผู้ใช้เสร็จสิ้น",
+                                          gravity: ToastGravity.TOP);
+                                      Navigator.pushReplacement(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return HomeScreen();
+                                      }));
+                                    });
                                   } on FirebaseAuthException catch (e) {
-                                    /*print(e.code);
-                                    print(e.message);*/
+                                    print(e.code);
+                                    String RegisterStatus;
+                                    if (e.code == 'email-already-in-use') {
+                                      RegisterStatus =
+                                          'มีอีเมลนีั้ในระบบแล้ว กรุณาใช้อีเมลล์อื่น';
+                                    } else if (e.code == 'weak-password') {
+                                      RegisterStatus =
+                                          'รหัสผ่านต้องมีความยาว 6 ตัวอักษรขึ้นไป';
+                                    } else {
+                                      RegisterStatus = e.message!;
+                                    }
                                     Fluttertoast.showToast(
-                                        msg: e.message!,
-                                        gravity: ToastGravity.CENTER);
+                                        msg: RegisterStatus,
+                                        gravity: ToastGravity.TOP);
                                   }
                                 }
                               },

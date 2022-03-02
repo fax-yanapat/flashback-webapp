@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
                       return RegisterScreen();
                     }));
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
                       return LoginScreen();
                     }));
