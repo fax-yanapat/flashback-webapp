@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/profile.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -73,16 +74,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: ElevatedButton(
                               child: Text("ลงทะเบียน",
                                   style: TextStyle(fontSize: 18)),
-                              onPressed: () async{
+                              onPressed: () async {
                                 if (formKey.currentState!.validate()) {
                                   formKey.currentState!.save();
                                   try {
-                                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                                      email: profile.email,
-                                      password: profile.password);
+                                    await FirebaseAuth.instance
+                                        .createUserWithEmailAndPassword(
+                                            email: profile.email,
+                                            password: profile.password);
+                                    Fluttertoast.showToast(
+                                      msg: "สร้างบัญชีผู้ใช้เสร็จสิ้น",
+                                      gravity: ToastGravity.CENTER
+                                    );
                                     formKey.currentState!.reset();
+                                    Navigator.pushReplacement(context, MaterialPageRoute())
                                   } on FirebaseAuthException catch (e) {
-                                    print(e.message);
+                                    /*print(e.code);
+                                    print(e.message);*/
+                                    Fluttertoast.showToast(
+                                        msg: e.message!,
+                                        gravity: ToastGravity.CENTER);
                                   }
                                 }
                               },
