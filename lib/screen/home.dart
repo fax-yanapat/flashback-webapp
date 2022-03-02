@@ -1,50 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screen/login.dart';
-import 'package:flutter_application_1/screen/register.dart';
+import 'package:flutter_application_1/screen/welcome_screen/welcome.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  final auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Register/Login"),
+        title: Text("Welcome"),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset("asset/images/login.png"),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) {
-                      return RegisterScreen();
-                    }));
-                  },
-                  icon: Icon(Icons.add),
-                  label:
-                      Text("สร้างบัญชีผู้ใช้", style: TextStyle(fontSize: 20)),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) {
-                      return LoginScreen();
-                    }));
-                  },
-                  icon: Icon(Icons.login),
-                  label: Text("เข้าสู่ระบบ", style: TextStyle(fontSize: 20)),
-                ),
-              )
-            ],
-          ),
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              auth.currentUser!.email!,
+              style : TextStyle(fontSize: 25),
+            ),
+            ElevatedButton(
+              child: Text("ออกจากระบบ"),
+              onPressed: (){
+                auth.signOut().then((value){
+                  Navigator.pushReplacement(context, 
+                  MaterialPageRoute(builder: (context) {
+                    return WelcomeScreen();
+                  }));
+                });
+              }, 
+            )
+          ],
         ),
       ),
     );

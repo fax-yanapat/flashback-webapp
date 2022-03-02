@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/profile.dart';
-import 'package:flutter_application_1/screen/welcome.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Navigator.pushReplacement(context,
                                           MaterialPageRoute(
                                               builder: ((context) {
-                                        return WelcomeScreen();
+                                        return HomeScreen();
                                       })));
                                     });
                                   } on FirebaseAuthException catch (e) {
