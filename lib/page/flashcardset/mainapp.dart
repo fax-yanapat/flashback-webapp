@@ -4,10 +4,6 @@ import 'package:flutter_application_1/flashcard_view.dart';
 
 import '../../flashcard.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
@@ -26,8 +22,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
+        backgroundColor: Color(0xFF689F38),
         title: Text("FlashBack"),
       ),
       body: Center(

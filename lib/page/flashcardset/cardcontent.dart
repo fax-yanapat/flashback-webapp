@@ -1,12 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/page/flashcardset/cardcontent.dart';
-import 'package:flutter_application_1/page/homescreen.dart';
-import 'package:flutter_application_1/page/Qiuzcontent/quiz.dart';
+import 'package:flutter_application_1/page/flashcardset/mainapp.dart';
 
-class Mainmenuscreen extends StatelessWidget {
-  const Mainmenuscreen({Key? key}) : super(key: key);
+class CardContent extends StatelessWidget {
+  const CardContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class Mainmenuscreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/images/logo.png"),
+              Image.asset("assets/images/icon.png"),
               Container(
                 height: 50.0,
                 margin: EdgeInsets.all(10),
@@ -29,7 +27,7 @@ class Mainmenuscreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return HomeScreen();
+                      return MyApp();
                     }));
                   },
                   shape: RoundedRectangleBorder(
@@ -48,7 +46,7 @@ class Mainmenuscreen extends StatelessWidget {
                           BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
                       alignment: Alignment.center,
                       child: Text(
-                        "Home",
+                        "ฟิสิกส์นิวเคลียร์",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       ),
@@ -60,12 +58,7 @@ class Mainmenuscreen extends StatelessWidget {
                 height: 50.0,
                 margin: EdgeInsets.all(10),
                 child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return CardContent();
-                    }));
-                  },
+                  onPressed: () {},
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
                   padding: EdgeInsets.all(0.0),
@@ -82,7 +75,7 @@ class Mainmenuscreen extends StatelessWidget {
                           BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
                       alignment: Alignment.center,
                       child: Text(
-                        "FlashCard",
+                        "เนื้อหาอื่น ๆ",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       ),
@@ -94,12 +87,7 @@ class Mainmenuscreen extends StatelessWidget {
                 height: 50.0,
                 margin: EdgeInsets.all(10),
                 child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return QuizScreens();
-                    }));
-                  },
+                  onPressed: () {},
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
                   padding: EdgeInsets.all(0.0),
@@ -116,7 +104,7 @@ class Mainmenuscreen extends StatelessWidget {
                           BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
                       alignment: Alignment.center,
                       child: Text(
-                        "Quiz",
+                        "เนื้อหาอื่น ๆ",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       ),
