@@ -37,7 +37,7 @@ class homeQuizScreen extends StatelessWidget {
                       icon: Icon(
                         Icons.arrow_right_alt,
                       ),
-                      label: Text("Next"),
+                      label: Text("Start"),
                       onPressed: () {
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: ((context) {

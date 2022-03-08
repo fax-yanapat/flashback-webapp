@@ -43,7 +43,7 @@ class ProgressBar extends StatelessWidget {
                     children: [
                       Text(
                         "${(controller.animation.value * 60).round()} วินาที",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.black),
                       ),
                     ],
                   ),
