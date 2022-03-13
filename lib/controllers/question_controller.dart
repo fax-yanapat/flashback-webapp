@@ -23,17 +23,17 @@ class QuestionController extends GetxController
 
   List<Question> get question => _questions;*/
 
-  final List<Question> _question = questiondata
+  final List<Question> _questions = em_question
       .map(
-        (questiondata) => Question(
-            id: questiondata['id'], 
-            question: questiondata['question'], 
-            answer: questiondata['answer_index'], 
-            options: questiondata['options']),
+        (question) => Question(
+            id: question['id'], 
+            question: question['question'], 
+            answer: question['answer_index'], 
+            options: question['options']),
       )
       .toList();
 
-  List<Question> get question => _question;
+  List<Question> get questions => _questions;
 
   @override
   void onInit() {

@@ -51,9 +51,9 @@ class Body extends StatelessWidget {
               SizedBox(height: 12),
               Expanded(
                 child: PageView.builder(
-                  itemCount: _questionController.question.length,
+                  itemCount: _questionController.questions.length,
                   itemBuilder: (context, index) => QuestionCard(
-                    questiondata: _questionController.questiondata,
+                    question: _questionController.questions[index]
                   ),
                 ),
               ),
@@ -73,7 +73,7 @@ class Question extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      questiondata[0]['question'],
+      em_question[0]['question'],
       style:
           Theme.of(context).textTheme.headline6?.copyWith(color: Colors.black),
     );
