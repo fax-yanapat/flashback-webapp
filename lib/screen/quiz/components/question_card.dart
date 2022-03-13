@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/constant/style.dart';
 import 'package:flutter_application_1/model/question.dart';
+import 'package:flutter_application_1/screen/quiz/components/option.dart';
 
 class QuestionCard extends StatelessWidget {
   const QuestionCard({
@@ -30,7 +31,10 @@ class QuestionCard extends StatelessWidget {
                 ?.copyWith(color: Colors.black),
           ),
           SizedBox(height: kDefaultPadding / 2),
-          //Option(),
+          Option(),
+          Option(),
+          Option(),
+          Option(),
         ],
       ),
     );

@@ -11,18 +11,6 @@ class QuestionController extends GetxController
 
   Animation get animation => _animation;
 
-  /*final List<Question> _questions = questiondata
-      .map(
-        (question) => Question(
-            id: question['id'],
-            question: question['question'],
-            options: question['option'],
-            answer: question['answer_index']),
-      )
-      .toList();
-
-  List<Question> get question => _questions;*/
-
   final List<Question> _questions = em_question
       .map(
         (question) => Question(

@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
                         ?.copyWith(color: Colors.black),
                     children: [
                       TextSpan(
-                          text: "/10",
+                          text: "/20",
                           style: Theme.of(context)
                               .textTheme
                               .headline5
