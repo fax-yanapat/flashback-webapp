@@ -21,7 +21,7 @@ class WelcomeScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Get.to(RegisterScreen());
+                  Get.to(() => RegisterScreen());
                 },
                 icon: Icon(Icons.add),
                 label: Text("สร้างบัญชีผู้ใช้", style: TextStyle(fontSize: 20)),
@@ -31,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Get.to(LoginScreen());
+                  Get.to(() => LoginScreen());
                 },
                 icon: Icon(Icons.login),
                 label: Text("เข้าสู่ระบบ", style: TextStyle(fontSize: 20)),
@@ -43,7 +43,7 @@ class WelcomeScreen extends StatelessWidget {
                 textStyle: const TextStyle(fontSize: 16),
               ),
               onPressed: () {
-                Get.to(LoginScreen());
+                Get.to(() => LoginScreen());
               },
               child: const Text('Login'),
             ),

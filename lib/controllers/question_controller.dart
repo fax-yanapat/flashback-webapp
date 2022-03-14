@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/question.dart';
 import 'package:flutter/widgets.dart';

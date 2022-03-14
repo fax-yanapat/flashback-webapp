@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/profile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:get/get.dart';
+import 'constant/ui_helper.dart';
 import 'welcome_screen/welcome.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -15,8 +18,12 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
-  Profile profile = Profile(email: '', password: '');
+  Profile profile =
+      Profile(email: '', password: '', bio: '', username: '', level: '');
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
+  //FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final CollectionReference _userData =
+      FirebaseFirestore.instance.collection("_userData");
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +54,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("อีเมล", style: TextStyle(fontSize: 20)),
+                          verticalSpaceRegular,
                           TextFormField(
+                            decoration: const InputDecoration(
+                              icon: Icon(Icons.person),
+                              hintText: "ใช้สำหรับแสดงผลภายในแอพ",
+                              labelText: "ชื่อผู้ใช้",
+                              filled: true,
+                            ),
+                            validator: RequiredValidator(
+                                errorText: "กรุณาป้อนชื่อผู้ใช้"),
+                            onSaved: (String? username) {
+                              profile.username = username.toString();
+                            },
+                          ),
+                          verticalSpaceSmall,
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              icon: Icon(Icons.email_outlined),
+                              hintText: "กรุณากรอกอีเมลของคุณ",
+                              labelText: "อีเมล",
+                              filled: true,
+                            ),
                             validator: MultiValidator([
-                              RequiredValidator(
-                                  errorText: "กรุณาป้อนชื่อผู้ใช้"),
+                              RequiredValidator(errorText: "กรุณาป้อนอีเมล"),
                               EmailValidator(errorText: "รูปแบบอีเมลไม่ถูกต้อง")
                             ]),
                             keyboardType: TextInputType.emailAddress,
@@ -59,11 +85,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               profile.email = email.toString();
                             },
                           ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Text("รหัสผ่าน", style: TextStyle(fontSize: 20)),
+                          verticalSpaceSmall,
                           TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: "ความยาวอย่างน้อย 6 ตัวอักษร",
+                              labelText: "รหัสผ่าน",
+                              filled: true,
+                            ),
                             validator: RequiredValidator(
                                 errorText: "กรุณาป้อนรหัสผ่าน"),
                             obscureText: true,
@@ -71,6 +99,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               profile.password = password.toString();
                             },
                           ),
+                          verticalSpaceSmall,
+                          /*TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: "กรุณาป้อนรหัสผ่านอีกครั้ง",
+                              labelText: "ยืนยันรหัสผ่าน",
+                              filled: true,
+                            ),
+                            validator: RequiredValidator(
+                                errorText: "กรุณาป้อนรหัสผ่าน"),
+                            obscureText: true,
+                            onSaved: (String? passwordCheck) {
+                              passwordCheck = passwordCheck.toString();
+                            },
+                          ),*/
+                          verticalSpaceMedium,
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              filled: true,
+                              labelText: "ระดับชั้นการศึกษาปัจจุบัน",
+                              helperText: "ตัวอย่าง ชั้นมัธยมศึกษาปีที่ 5",
+                            ),
+                            validator: RequiredValidator(
+                                errorText: "กรุณาป้อนระดับชั้นเรียนของคุณ"),
+                            onSaved: (String? level) {
+                              profile.level = level.toString();
+                            },
+                          ),
+                          verticalSpaceMedium,
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              border: const OutlineInputBorder(),
+                              helperText:
+                                  "แนะนำตัวให้เรารู้จัก (เพื่อให้เรารู้จักกันมาขึ้น)",
+                              labelText: "เรื่องราวชีวิต",
+                            ),
+                            maxLines: 2,
+                            onSaved: (String? bio) {
+                              profile.bio = bio.toString();
+                            },
+                          ),
+                          verticalSpaceMedium,
                           SizedBox(
                             child: ElevatedButton(
                               child: Text("ลงทะเบียน",
@@ -78,6 +147,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onPressed: () async {
                                 if (formKey.currentState!.validate()) {
                                   formKey.currentState!.save();
+                                  await _userData.add({
+                                    "username": profile.username,
+                                    "email": profile.email,
+                                    "password": profile.password,
+                                    "level": profile.level,
+                                    "bio": profile.bio,
+                                  });
                                   try {
                                     await FirebaseAuth.instance
                                         .createUserWithEmailAndPassword(
@@ -88,10 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       Fluttertoast.showToast(
                                           msg: "สร้างบัญชีผู้ใช้เสร็จสิ้น",
                                           gravity: ToastGravity.TOP);
-                                      Navigator.pushReplacement(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return WelcomeScreen();
-                                      }));
+                                      Get.to(() => WelcomeScreen());
                                     });
                                   } on FirebaseAuthException catch (e) {
                                     print(e.code);
