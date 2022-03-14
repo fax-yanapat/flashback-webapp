@@ -12,3 +12,13 @@ const TextStyle ktsMediumGreyBodyText = TextStyle(
   color: kcMediumGreyColor,
   fontSize: kBodyTextSize,
 );
+
+//Default Padding
+const double kDefaultPadding = 20.0;
+
+//Gradient
+const kPrimaryGradient = LinearGradient(
+  colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+);
