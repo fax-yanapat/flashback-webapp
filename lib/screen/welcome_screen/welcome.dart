@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/constant/ui_helper.dart';
 import 'package:flutter_application_1/screen/login.dart';
 import 'package:flutter_application_1/screen/register.dart';
+import 'package:get/get.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({Key? key}) : super(key: key);
@@ -20,39 +21,29 @@ class WelcomeScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) {
-                    return RegisterScreen();
-                  }));
+                  Get.to(RegisterScreen());
                 },
                 icon: Icon(Icons.add),
                 label: Text("สร้างบัญชีผู้ใช้", style: TextStyle(fontSize: 20)),
               ),
             ),
             SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) {
-                      return LoginScreen();
-                    }));
-                  },
-                  icon: Icon(Icons.login),
-                  label: Text("เข้าสู่ระบบ", style: TextStyle(fontSize: 20)),
-                ),
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Get.to(LoginScreen());
+                },
+                icon: Icon(Icons.login),
+                label: Text("เข้าสู่ระบบ", style: TextStyle(fontSize: 20)),
               ),
-            
+            ),
             Text('Already have an account? '),
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: const TextStyle(fontSize: 16),
               ),
               onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: ((context) {
-                  return LoginScreen();
-                })));
+                Get.to(LoginScreen());
               },
               child: const Text('Login'),
             ),
