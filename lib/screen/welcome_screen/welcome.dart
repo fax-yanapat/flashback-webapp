@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screen/constant/ui_helper.dart';
-import 'package:flutter_application_1/screen/login.dart';
-import 'package:flutter_application_1/screen/register.dart';
 import 'package:get/get.dart';
+import '../Registration_and_login/login.dart';
+import '../Registration_and_login/register.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({Key? key}) : super(key: key);
@@ -16,7 +15,7 @@ class WelcomeScreen extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
         child: SingleChildScrollView(
           child: Column(children: [
-            Image.asset("asset/images/login.png"),
+            //Image.asset("asset/images/login.png"),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(

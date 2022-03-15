@@ -1,10 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/page/flashcardset/mainapp.dart';
+import '../Flashcard/cardcontent.dart';
+import '../quiz/quiz_home.dart';
 
-class CardContent extends StatelessWidget {
-  const CardContent({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CardContent extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/images/icon.png"),
+              Image.asset("assets/images/logo.png"),
               Container(
                 height: 50.0,
                 margin: EdgeInsets.all(10),
@@ -27,7 +28,7 @@ class CardContent extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return MyApp();
+                      return HomeScreen();
                     }));
                   },
                   shape: RoundedRectangleBorder(
@@ -46,7 +47,7 @@ class CardContent extends StatelessWidget {
                           BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
                       alignment: Alignment.center,
                       child: Text(
-                        "ฟิสิกส์นิวเคลียร์",
+                        "Home",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       ),
@@ -58,7 +59,12 @@ class CardContent extends StatelessWidget {
                 height: 50.0,
                 margin: EdgeInsets.all(10),
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return CardContent();
+                    }));
+                  },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
                   padding: EdgeInsets.all(0.0),
@@ -75,7 +81,7 @@ class CardContent extends StatelessWidget {
                           BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
                       alignment: Alignment.center,
                       child: Text(
-                        "เนื้อหาอื่น ๆ",
+                        "FlashCard",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       ),
@@ -87,7 +93,12 @@ class CardContent extends StatelessWidget {
                 height: 50.0,
                 margin: EdgeInsets.all(10),
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return homeQuizScreen();
+                    }));
+                  },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(80.0)),
                   padding: EdgeInsets.all(0.0),
@@ -104,7 +115,7 @@ class CardContent extends StatelessWidget {
                           BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
                       alignment: Alignment.center,
                       child: Text(
-                        "เนื้อหาอื่น ๆ",
+                        "Quiz",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       ),

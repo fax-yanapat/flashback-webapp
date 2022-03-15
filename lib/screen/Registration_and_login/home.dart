@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/welcome_screen/welcome.dart';
 
-class HomeScreen extends StatelessWidget {
+/*class HomeScreen extends StatelessWidget {
   final auth = FirebaseAuth.instance;
   final _userData = FirebaseFirestore.instance.collection("_userData");
 
@@ -39,3 +39,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+*/

@@ -3,6 +3,7 @@ import 'package:flutter_application_1/controllers/question_controller.dart';
 import 'package:flutter_application_1/screen/quiz/quiz_main.dart';
 import 'package:get/get.dart';
 
+import '../welcome_screen/homepage.dart';
 import 'quiz_home.dart';
 
 class ScoreScreen extends StatelessWidget {
@@ -45,7 +46,7 @@ class ScoreScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: ((context) {
-                        return homeQuizScreen();
+                        return HomeScreen();
                       })));
                     },
                   ),

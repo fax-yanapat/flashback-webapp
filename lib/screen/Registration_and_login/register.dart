@@ -6,8 +6,8 @@ import 'package:flutter_application_1/model/profile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
-import 'constant/ui_helper.dart';
-import 'welcome_screen/welcome.dart';
+import '../constant/ui_helper.dart';
+import '../welcome_screen/welcome.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);

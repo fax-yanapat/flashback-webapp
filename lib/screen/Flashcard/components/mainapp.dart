@@ -1,8 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/flashcard_view.dart';
-
-import '../../flashcard.dart';
+import 'flashcard.dart';
+import 'flashcard_view.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
