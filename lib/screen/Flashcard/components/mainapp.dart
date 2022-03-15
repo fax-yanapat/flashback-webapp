@@ -1,6 +1,6 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'flashcard.dart';
+import '../../../model/flashcard_data.dart';
 import 'flashcard_view.dart';
 
 class MyApp extends StatefulWidget {
@@ -11,9 +11,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List<Flashcard> flashcards = [
-    Flashcard(question: "กินข้าวร้านไหนดี", answer: "ป้าต้อย"),
-    Flashcard(question: "ไปไหนดี ?", answer: "ทะเล"),
-    Flashcard(question: "why you here?", answer: "Dont know"),
+    Flashcard(question: "อัตราเร็วของคลื่นแม่เหล็กไฟฟ้าในสุญญากาศ", answer: "3x10^8 เมตรต่อวินาที"),
+    Flashcard(question: "คลื่นแม่เหล็กไฟฟ้าที่มีความถี่ต่อเนื่องกันเป็นช่วงกว้าง", answer: "สเปกตรัมคลื่นแม่เหล็กไฟฟ้า"),
+    Flashcard(question: "คลื่นแม่เหล็กไฟฟ้าที่มีความถี่น้อยที่สุด", answer: "คลื่นวิทยุ"),
   ];
 
   int currentIndex = 0;
@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         backgroundColor: Color(0xFF689F38),
-        title: Text("FlashBack"),
+        title: Text("Flashcard"),
       ),
       body: Center(
         child: Column(
@@ -34,25 +34,44 @@ class _MyAppState extends State<MyApp> {
                 width: 300,
                 height: 300,
                 child: FlipCard(
-                    front: FlashcardView(
-                      key: ObjectKey(1),
-                      text: flashcards[currentIndex].question,
+                    front: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     ),
-                    back: FlashcardView(
-                      key: ObjectKey(2),
-                      text: flashcards[currentIndex].answer,
-                    ))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(flashcards[currentIndex].question, style: TextStyle(fontSize: 18),),
+                      ],
+                    ),
+                      /*key: ObjectKey(1),
+                      text: flashcards[currentIndex].question,*/
+                    ),
+                    back: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(flashcards[currentIndex].answer, style: TextStyle(fontSize: 18),),
+                      ],
+                    ),
+                      /*key: ObjectKey(1),
+                      text: flashcards[currentIndex].question,*/
+                    ),)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 OutlinedButton.icon(
                     onPressed: showPreviouscard,
                     icon: Icon(Icons.chevron_left),
-                    label: Text('Prev')),
+                    label: Text('ก่อนหน้า')),
                 OutlinedButton.icon(
                     onPressed: showNextcard,
                     icon: Icon(Icons.chevron_right),
-                    label: Text('Next')),
+                    label: Text('ถัดไป')),
               ],
             )
           ],

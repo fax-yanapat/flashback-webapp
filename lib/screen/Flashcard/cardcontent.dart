@@ -47,7 +47,7 @@ class CardContent extends StatelessWidget {
                           BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
                       alignment: Alignment.center,
                       child: Text(
-                        "ฟิสิกส์นิวเคลียร์",
+                        "แม่เหล็กไฟฟ้า",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       ),

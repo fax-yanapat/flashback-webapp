@@ -28,40 +28,6 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return HomeScreen();
-                    }));
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [Color(0xFF689F38), Color(0xFFDCEDC8)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Home",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.all(10),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
                       return CardContent();
                     }));
                   },
@@ -116,6 +82,40 @@ class HomeScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         "Quiz",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black, fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 50.0,
+                margin: EdgeInsets.all(10),
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return HomeScreen();
+                    }));
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0)),
+                  padding: EdgeInsets.all(0.0),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: const [Color(0xFF689F38), Color(0xFFDCEDC8)],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Container(
+                      constraints:
+                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Contact us",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 18),
                       ),
