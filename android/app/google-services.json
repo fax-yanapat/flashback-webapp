@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "830315977943",
+    "project_id": "physicsflashcardlogin",
+    "storage_bucket": "physicsflashcardlogin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830315977943:android:40717a17b38afd8f916492",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830315977943-ojrlbpi26dsef063ruc7aae64cncajhk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj34KeyEAAI5FQlJhLsj-Y1qFn_vKhMeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830315977943-ojrlbpi26dsef063ruc7aae64cncajhk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
