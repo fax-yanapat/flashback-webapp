@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'components/mainapp.dart';
 
 class CardContent extends StatelessWidget {
@@ -12,110 +12,118 @@ class CardContent extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xFF689F38),
-        title: Text("FlashBack"),
+        backgroundColor: Colors.green,
+        title: Text('Flashcard'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset("assets/images/icon.png"),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.all(10),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return MyApp();
-                    }));
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [Color(0xFF689F38), Color(0xFFDCEDC8)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "แม่เหล็กไฟฟ้า",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: [
+          SizedBox(
+            height: 298.0,
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
+              child: InkWell(
+                onTap: () {
+                  Get.to(()=>MyApp());
+                },
+                splashColor:
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
+                highlightColor: Colors.transparent,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 184,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: Ink.image(
+                              image: AssetImage('assets/images/EM_image.jpg'),
+                              fit: BoxFit.cover,
+                              child: Container(),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 16,
+                            left: 16,
+                            right: 16,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                              /*child: Text(
+                                "แม่เหล็กไฟฟ้า",
+                                style: ,
+                              ),*/
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ),
-              ),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.all(10),
-                child: RaisedButton(
-                  onPressed: () {},
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [Color(0xFF689F38), Color(0xFFDCEDC8)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                      child: DefaultTextStyle(
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 24, color: Colors.black),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Text(
+                                "แม่เหล็กและไฟฟ้า",
+                              ),
+                            ),
+                            Text(
+                              "จำนวนการ์ดทั้งหมด 40 ใบ",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
                         ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "เนื้อหาอื่น ๆ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.all(10),
-                child: RaisedButton(
-                  onPressed: () {},
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [Color(0xFF689F38), Color(0xFFDCEDC8)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "เนื้อหาอื่น ๆ",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          SizedBox(
+            height: 56,
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8.0))),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                      child: DefaultTextStyle(
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 16, color: Colors.black54),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 0),
+                              child: 
+                              Icon(Icons.more_horiz_rounded, color: Colors.black54),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+            ),
+          ),
+        ],
       ),
     );
   }

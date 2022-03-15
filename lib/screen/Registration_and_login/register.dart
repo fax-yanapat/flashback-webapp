@@ -8,6 +8,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import '../constant/ui_helper.dart';
 import '../welcome_screen/welcome.dart';
+import 'package:intl/intl.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -19,10 +20,11 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
   Profile profile =
-      Profile(email: '', password: '', bio: '', username: '', level: '');
+      Profile(email: '', password: '', bio: '', username: '', DOB: '');
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
   final CollectionReference _userData =
       FirebaseFirestore.instance.collection("_userData");
+  TextEditingController dateCtl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -114,15 +116,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),*/
                           verticalSpaceMedium,
                           TextFormField(
-                            decoration: const InputDecoration(
-                              filled: true,
-                              labelText: "ระดับชั้นการศึกษาปัจจุบัน",
-                              helperText: "ตัวอย่าง ชั้นมัธยมศึกษาปีที่ 5",
+                            readOnly: true,
+                            controller: dateCtl,
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.calendar_today),
+                              border: const OutlineInputBorder(),
+                              labelText: "วันเกิด",
+                              hintText: "เช่น 27 ธันวาคม 2514",
                             ),
-                            validator: RequiredValidator(
-                                errorText: "กรุณาป้อนระดับชั้นเรียนของคุณ"),
-                            onSaved: (String? level) {
-                              profile.level = level.toString();
+                            onTap: () async {
+                              DateTime date_of_birth = DateTime(1900);
+                              FocusScope.of(context)
+                                  .requestFocus(new FocusNode());
+
+                              date_of_birth = (await showDatePicker(
+                                  initialDatePickerMode: DatePickerMode.day,
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1900),
+                                  lastDate: DateTime(2030)))!;
+
+                              dateCtl.text = date_of_birth.toString().split(' ')[0];
+                            },
+                            onSaved: (String? date_of_birth) {
+                              profile.DOB = date_of_birth.toString();
                             },
                           ),
                           verticalSpaceMedium,
@@ -150,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     "username": profile.username,
                                     "email": profile.email,
                                     "password": profile.password,
-                                    "level": profile.level,
+                                    "date_of_birth": profile.DOB,
                                     "bio": profile.bio,
                                   });
                                   try {
