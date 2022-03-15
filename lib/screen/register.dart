@@ -21,7 +21,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Profile profile =
       Profile(email: '', password: '', bio: '', username: '', level: '');
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
-  //FirebaseFirestore firestore = FirebaseFirestore.instance;
   final CollectionReference _userData =
       FirebaseFirestore.instance.collection("_userData");
 
