@@ -20,7 +20,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
   Profile profile =
-      Profile(email: '', password: '', bio: '', username: '', DOB: '');
+      Profile(id: '', email: '', password: '', bio: '', username: '', DOB: '');
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
   final CollectionReference _userData =
       FirebaseFirestore.instance.collection("_userData");
@@ -136,7 +136,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   firstDate: DateTime(1900),
                                   lastDate: DateTime(2030)))!;
 
-                              dateCtl.text = date_of_birth.toString().split(' ')[0];
+                              dateCtl.text =
+                                  date_of_birth.toString().split(' ')[0];
                             },
                             onSaved: (String? date_of_birth) {
                               profile.DOB = date_of_birth.toString();
@@ -163,19 +164,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onPressed: () async {
                                 if (formKey.currentState!.validate()) {
                                   formKey.currentState!.save();
-                                  await _userData.add({
-                                    "username": profile.username,
-                                    "email": profile.email,
-                                    "password": profile.password,
-                                    "date_of_birth": profile.DOB,
-                                    "bio": profile.bio,
-                                  });
                                   try {
                                     await FirebaseAuth.instance
                                         .createUserWithEmailAndPassword(
                                             email: profile.email,
                                             password: profile.password)
                                         .then((value) {
+                                      _userData.doc("${FirebaseAuth.instance.currentUser?.uid}").set({
+                                        "id": FirebaseAuth.instance.currentUser?.uid,
+                                        "username": profile.username,
+                                        "email": profile.email,
+                                        "password": profile.password,
+                                        "date_of_birth": profile.DOB,
+                                        "bio": profile.bio,
+                                      });
                                       formKey.currentState!.reset();
                                       Fluttertoast.showToast(
                                           msg: "สร้างบัญชีผู้ใช้เสร็จสิ้น",
