@@ -35,9 +35,9 @@ class homeQuizScreen extends StatelessWidget {
                       ),
                     ),
                   ),*/
-                  Text("Username : ${profile.username}"),
-                  Text("เนื่อหา : แม่เหล็กและไฟฟ้า (20 ข้อ)"),
-                  Text("เวลา : ${DateTime.now()}"),
+                  Text("Username : ${profile.username}",style: TextStyle(fontSize: 16),),
+                  Text("เนื่อหา : แม่เหล็กและไฟฟ้า (20 ข้อ)",style: TextStyle(fontSize: 16),),
+                  Text("เวลา : ${DateTime.now()}",style: TextStyle(fontSize: 16),),
                   Spacer(),
                   ElevatedButton.icon(
                       icon: Icon(
@@ -51,7 +51,7 @@ class homeQuizScreen extends StatelessWidget {
                         })));
                       }),
                   verticalSpaceSmall,
-                  Text("*เนื่องจากแอพลิเคชั่นนั่นเป็นส่วนหนึ่งของงานวิจัย เราจึงอนุญาตให้ผู้ใช้สามารถทำควิสได้เพียงเรื่องของแม่เหล็กและไฟฟ้า ส่วนในเนื้อหาอื่น ๆ จะมีอัพเดทเพิ่มเติมในอนาคต",style: TextStyle(color: Colors.grey),),
+                  Text("*เนื่องจากแอพลิเคชั่นนี้ยังอยู่ในขั้นตอนการพัฒนา เราจึงอนุญาตให้ผู้ใช้สามารถทำควิสได้เพียงเรื่องของแม่เหล็กและไฟฟ้า ส่วนในเนื้อหาอื่น ๆ จะมีอัพเดทเพิ่มเติมในอนาคต",style: TextStyle(color: Colors.grey),),
                   Spacer(),
                 ],
               ),
