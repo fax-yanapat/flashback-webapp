@@ -8,9 +8,9 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: Text("Register/Login"),
-      ),
+      ),*/
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
         child: SingleChildScrollView(

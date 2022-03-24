@@ -1,10 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controllers/question_controller.dart';
+import 'package:flutter_application_1/model/local_profile.dart';
 import 'package:flutter_application_1/screen/quiz/quiz_main.dart';
 import 'package:get/get.dart';
-
 import '../welcome_screen/homepage.dart';
 import 'quiz_home.dart';
+import 'package:flutter_application_1/model/score.dart';
+import 'package:intl/intl.dart';
+
+Score score = Score(
+  username: '',
+  topic: '',
+  date: '',
+  full_score: 0,
+  user_score: 0,
+);
 
 class ScoreScreen extends StatelessWidget {
   const ScoreScreen({Key? key}) : super(key: key);
@@ -12,10 +23,26 @@ class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _qnController = Get.put(QuestionController());
+
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('yyyy-MM-dd HH.mm');
+    final String formatted = formatter.format(now);
+
+    score.username = profile.username;
+    score.topic = 'EM';
+    score.date = formatted;
+    score.full_score = _qnController.questions.length;
+    score.user_score = _qnController.NumOfCorrectAns;
+
+    FirebaseFirestore.instance.collection('Score').add({
+      "username" : score.username,
+      "topic" : score.topic,
+      "date" : score.date,
+      "score_full" : score.full_score,
+      "score_user" : score.user_score,
+    });
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Score"),
-      ),
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -29,7 +56,7 @@ class ScoreScreen extends StatelessWidget {
                       ?.copyWith(color: Colors.black)),
               Spacer(),
               Text(
-                "${_qnController.correctAns}/${_qnController.questions.length}",
+                "${_qnController.NumOfCorrectAns}/${_qnController.questions.length}",
                 style: Theme.of(context)
                     .textTheme
                     .headline4

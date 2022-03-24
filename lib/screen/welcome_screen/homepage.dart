@@ -3,140 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/Contact/contact_page.dart';
 import 'package:flutter_application_1/screen/constant/ui_helper.dart';
+import 'package:flutter_application_1/screen/welcome_screen/welcome.dart';
 import 'package:get/get.dart';
 import '../Flashcard/cardcontent.dart';
 import '../quiz/quiz_home.dart';
 import '../constant/style.dart';
 import 'package:flutter_application_1/model/local_profile.dart';
 
-/*
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Color(0xFF689F38),
-        title: Text("FlashBack"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 50, 10, 0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset("assets/images/logo.png"),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.all(10),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return CardContent();
-                    }));
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [Color(0xFF689F38), Color(0xFFDCEDC8)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "FlashCard",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.all(10),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return homeQuizScreen();
-                    }));
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [Color(0xFF689F38), Color(0xFFDCEDC8)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Quiz",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                height: 50.0,
-                margin: EdgeInsets.all(10),
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return HomeScreen();
-                    }));
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0)),
-                  padding: EdgeInsets.all(0.0),
-                  child: Ink(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: const [Color(0xFF689F38), Color(0xFFDCEDC8)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Container(
-                      constraints:
-                          BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Contact us",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-*/
 LocalProfile profile = LocalProfile(id: '', username: '', bio: '');
 
 class HomeScreen extends StatelessWidget {
@@ -144,6 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = FirebaseAuth.instance;
     final userid = FirebaseAuth.instance.currentUser!.uid;
     FirebaseFirestore.instance
         .collection('_userData')
@@ -175,17 +49,32 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Align(
+                    /*Align(
                       alignment: Alignment.topRight,
                       child: Container(
                         alignment: Alignment.center,
                         height: 52,
                         width: 52,
                         decoration: BoxDecoration(
-                          color: Colors.green,
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.white,
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(Icons.menu),
+                        child: Icon(Icons.logout_outlined),
+                      ),
+                    ),*/
+                    ListTile(
+                      trailing: PopupMenuButton(
+                        itemBuilder: (context) => <PopupMenuItem<String>>[
+                          PopupMenuItem(
+                            child: Text("ออกจากระบบ"),
+                            onTap: () {
+                              auth.signOut().then(((value) {
+                                Get.to(() => WelcomeScreen());
+                              }));
+                            },
+                          ),
+                        ],
                       ),
                     ),
                     Text(
@@ -205,7 +94,8 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(13),
                           child: Container(
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.green, width: 1.5),
+                              border:
+                                  Border.all(color: Colors.green, width: 1.5),
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(13),
                               boxShadow: [
@@ -228,10 +118,11 @@ class HomeScreen extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Spacer(),
-                                      Icon(Icons.photo_filter_outlined, size: 72),
+                                      Icon(Icons.photo_filter_outlined,
+                                          size: 72),
                                       Spacer(),
                                       Text(
-                                        "Flashcard",
+                                        "การ์ดความรู้",
                                         style: TextStyle(fontSize: 20),
                                       )
                                     ],
@@ -245,7 +136,8 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(13),
                           child: Container(
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.green, width: 1.5),
+                              border:
+                                  Border.all(color: Colors.green, width: 1.5),
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(13),
                               boxShadow: [
@@ -268,10 +160,13 @@ class HomeScreen extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Spacer(),
-                                      Icon(Icons.quiz_outlined, size: 72,),
+                                      Icon(
+                                        Icons.quiz_outlined,
+                                        size: 72,
+                                      ),
                                       Spacer(),
                                       Text(
-                                        "Quiz",
+                                        "คำถาม",
                                         style: TextStyle(fontSize: 20),
                                       )
                                     ],
@@ -281,11 +176,12 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ClipRRect(
+                        /*ClipRRect(
                           borderRadius: BorderRadius.circular(13),
                           child: Container(
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 1.5),
+                              border:
+                                  Border.all(color: Colors.grey, width: 1.5),
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(13),
                               boxShadow: [
@@ -308,7 +204,10 @@ class HomeScreen extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Spacer(),
-                                      Icon(Icons.contact_support_outlined, size: 72,),
+                                      Icon(
+                                        Icons.contact_support_outlined,
+                                        size: 72,
+                                      ),
                                       Spacer(),
                                       Text(
                                         "Support",
@@ -320,7 +219,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ),
+                        ),*/
                       ],
                     )),
                   ],

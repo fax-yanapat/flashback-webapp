@@ -5,7 +5,6 @@ import 'package:flutter_application_1/model/profile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import '../welcome_screen/homepage.dart';
-import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
