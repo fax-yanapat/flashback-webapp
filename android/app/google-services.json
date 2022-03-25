@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "830315977943",
-    "project_id": "physicsflashcardlogin",
-    "storage_bucket": "physicsflashcardlogin.appspot.com"
+    "project_number": "716016674491",
+    "project_id": "flashback-91af7",
+    "storage_bucket": "flashback-91af7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:830315977943:android:40717a17b38afd8f916492",
+        "mobilesdk_app_id": "1:716016674491:android:368a8dfd7b2588f82f2b9e",
         "android_client_info": {
-          "package_name": "com.example.flutter_application_1"
+          "package_name": "com.faxyanapatt.flashback"
         }
       },
       "oauth_client": [
         {
-          "client_id": "830315977943-ojrlbpi26dsef063ruc7aae64cncajhk.apps.googleusercontent.com",
+          "client_id": "716016674491-q7tnei8cg0qmou4p9adob19eidu175c0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBj34KeyEAAI5FQlJhLsj-Y1qFn_vKhMeE"
+          "current_key": "AIzaSyCqP3SYrzA--CWVA3nc7LLcrdoSiEeBlt0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "830315977943-ojrlbpi26dsef063ruc7aae64cncajhk.apps.googleusercontent.com",
+              "client_id": "716016674491-q7tnei8cg0qmou4p9adob19eidu175c0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
